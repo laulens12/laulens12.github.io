@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Modell</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Chart.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+
+  </head>
+  <body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Modell</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="#">Feder</a>
+            <a class="nav-link" href="#">Planetenbahn</a>
+            <a class="nav-link" href="#">Sonnensystem</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover text-right">
+        <div class="row">
+          <div class="col-md"></div>
+          <div class="col-md-6">
+            <h1 class="cover-heading">Modell einer Feder.</h1>
+            <p class="lead">In diesem Modell wird die Bewegung einer Masse an einer Feder beschrieben, inspiriert durch Richard Feynman.</p>
+            <p class="lead">
+              <button type="button" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                Loslegen
+              </button>
+            </p>
+          </div>
+        </div>
+      </main>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modell einer Feder</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col">
+                    <h5 id="diagHeader">x,t-Diagramm</h5>
+                    <a href="#" class="text-dark" onclick="reset()">Diagramm löschen</a> -
+                    <a href="#" class="text-dark" onclick="run()">Diagramm zeichnen</a>
+                    <canvas id="modelcanv" height="300"/>
+                  </div>
+                  <div class="col text-left">
+                    <h5>Konstanten</h5>
+                    <div class="list-group" id="konstanten">
+                      <div class="list-group-item noEdit toggler form-group" id="togglerKonstanten">
+                        <label for="formControlRange">Toggler</label>
+                        <input type="range" class="form-control-range" id="formControlRange" step="any">
+                      </div>
+                      <a href="#" class="list-group-item list-group-item-action text-center bg-light noEdit" id="plusKonstante">
+                        &plus;
+                      </a>
+                    </div>
+                    <h5>Variablen</h5>
+                    <div class="list-group" id="variablen">
+                      <a href="#" class="list-group-item list-group-item-action disabled noEdit" tabindex="-1" aria-disabled="true" id="t">
+                        t = t + dt <br>
+                        t(0) = 0
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action" id="a">
+                        a = Fres / m
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action" id="v">
+                        v = v + a * dt <br>
+                        v(0) = 0
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action" id="x">
+                        x = x + v * dt <br>
+                        x(0) = 0
+                      </a>
+                      <div class="list-group-item noEdit toggler form-group" id="togglerVariablen">
+                        <label for="formControlRange2">Toggler</label>
+                        <input type="range" class="form-control-range" id="formControlRange2" step="any">
+                        <br>
+                        <a class="btn btn-dark" href="#" onclick="vDiagram()">Diagramm</a>
+                      </div>
+                      <a href="#" class="list-group-item list-group-item-action text-center bg-light noEdit" id="plusVariable">
+                        &plus;
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner text-right">
+          <p>Presentiert von <span style="color:#fff;">Laurens Paulsen</a>.</p>
+        </div>
+      </footer>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <!-- Custom script -->
+    <script src="script.js"></script>
+  </body>
+</html>
